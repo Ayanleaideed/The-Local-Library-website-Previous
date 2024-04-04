@@ -1,0 +1,60 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>Fargo Library</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="jumbotron">
+        <h1 class="display-4">Welcome to Fargo Library</h1>
+        <p class="lead">
+          Explore our collection of books, discover new authors, and stay up-to-date with exciting events.
+        </p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Library Statistics</h2>
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Total Books:</strong> {{ num_books }}</li>
+                <li class="list-group-item"><strong>Total Copies:</strong> {{ num_instances }}</li>
+                <li class="list-group-item"><strong>Copies Available:</strong> {{ num_instances_available }}</li>
+                <li class="list-group-item"><strong>Total Authors:</strong> {{ num_authors }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Upcoming Events</h2>
+              <ul class="list-group">
+                {% for event in upcoming_events %}
+
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Featured Books</h2>
+          <div class="list-group">
+            {% for book in featured_books %}
+            <a href="{{ book.get_absolute_url }}" class="list-group-item list-group-item-action">{{ book.title }}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

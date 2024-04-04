@@ -1,0 +1,27 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card mb-4 shadow">
+        <div class="card-body">
+          <h1 class="card-title">Add New Book</h1>
+          <form action="" method="post">
+            {% csrf_token %}
+            <table class="table">
+              {% for field in form %}
+                <tr>
+                  <th>{{ field.label_tag }}</th>
+                  <td>{{ field }}</td>
+                </tr>
+              {% endfor %}
+            </table>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

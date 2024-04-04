@@ -37,7 +37,7 @@ class BookAdmin(admin.ModelAdmin):
 
 
 # Register the Admin classes for BookInstance using the decorator
-@admin.register(BookInstance) 
+@admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'due_back')
     list_display = ('book', 'status', 'borrower', 'id', 'due_back')
@@ -49,9 +49,3 @@ class BookInstanceAdmin(admin.ModelAdmin):
             'fields': ('status', 'due_back', 'borrower')
         }),
     )
-
-def display_genre(self):
-    """Create a string for the Genre. This is required to display genre in Admin."""
-    return ', '.join(genre.name for genre in self.genre.all()[:3])
-
-display_genre.short_description = 'Genre'

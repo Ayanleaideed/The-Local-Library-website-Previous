@@ -1,0 +1,82 @@
+{% extends "base_generic.html" %}
+{% block title %}
+<title>Book List</title>
+{% endblock %}
+<style>
+    /* Add your CSS styles here */
+    .card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #fff;
+        width: 50%;
+    }
+
+    .card img {
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .realtor-info {
+        background-color: #f7fafc;
+        padding: 1rem;
+        border-top: 1px solid #cbd5e0;
+    }
+
+    .realtor-info .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        margin-right: 10px;
+    }
+
+    .realtor-info .realtor-details p {
+        margin: 0;
+    }
+</style>
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Book List</h1>
+    <div class="row">
+        {% for book in book_list %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow">
+                <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}" style="width: 70%; ">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                    <p class="card-text"><strong>Published:</strong> {{ book.published_date }}</p>
+                    <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>
+                    <p class="card-text"><strong>ISBN:</strong> {{ book.isbn }}</p>
+                    <p class="card-text">{{ book.summary }}</p>
+                    <a href="{{ book.get_absolute_url }}" class="btn btn-primary">{{ book.title }} {{book.author}}</a>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if not book_list %}
+    <p class="mt-4">There are no books in the library.</p>
+    {% endif %}
+</div>
+{% endblock %}

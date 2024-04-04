@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div class="card mb-4 shadow">
+        <div class="card-body">
+          <h1 class="card-title">Author List</h1>
+          {% if author_list %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Birth</th>
+                  <th scope="col">Death</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for author in author_list %}
+                  <tr>
+                    <td><a href="{{ author.get_absolute_url }}">{{ author }}</a></td>
+                    <td>{{ author.last_name }}</td>
+                    <td>{% if author.date_of_birth %}{{ author.date_of_birth|date:"M. d, Y" }}{% else %}None{% endif %}</td>
+                    <td>{% if author.date_of_death %}{{ author.date_of_death|date:"M. d, Y" }}{% else %}None{% endif %}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p class="card-text">There are no authors in the library.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

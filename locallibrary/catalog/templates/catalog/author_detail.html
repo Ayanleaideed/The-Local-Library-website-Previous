@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card mb-4 shadow">
+        <div class="card-body">
+          <h1 class="card-title">Author: {{ author }}</h1>
+          <p class="card-text">{{ author.date_of_birth }} - {% if author.date_of_death %} {{ author.date_of_death }} {% endif %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card mb-4 shadow">
+        <div class="card-body">
+          <h4 class="card-title">Books</h4>
+          {% for book in author.book_set.all %}
+            <hr>
+            <h5><a href="{{ book.get_absolute_url }}" class="card-link">{{ book.title }}</a></h5>
+            <p class="card-text">{{ book.summary }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
